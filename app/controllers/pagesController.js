@@ -10,7 +10,7 @@ pagesController.main = function() {
 	var permalink = self.req.originalUrl;
 	if(permalink=='/') {
 		self.template = 'posts';
-		Posts.find({},{files:0,comments:0},function(e, r) {
+		Posts.find({},{files:0,comments:0}).sort({created:-1}).exec(function(e, r) {
 			console.log(r);
 			self.posts = r;
 			self.render('index');

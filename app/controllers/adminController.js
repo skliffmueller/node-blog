@@ -45,6 +45,28 @@ adminController.post = function() {
 		};
 		self.render('admin');
 	} else if(permalink=='post') {
+		var query = self.req.body;
+		if(query.id!='') {
+			Posts.findOne({_id:query.id}, function(e, r) {
+				r.permalink=query.post.permalink;
+				r.title=query.post.title;
+				r.content=query.post.content;
+				r.info=query.post.info;
+				r.save(function(e) {
+					self.redirect('/');
+				});
+			});
+		} else {
+			var post = new Posts({
+				permalink:query.post.permalink,
+				title:query.post.title,
+				content:query.post.content,
+				info: query.post.info
+			});
+			post.save(function(e) {
+				self.redirect('/');
+			});
+		}
 		console.log(self.req.body);
 	} else {
 		Posts.findOne({permalink:permalink},function(e, r) {
