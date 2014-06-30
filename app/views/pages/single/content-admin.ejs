@@ -1,0 +1,63 @@
+<div class="panel panel-default">
+	<form method="post" action="/admin/post">
+	<input type="hidden" name="id" value="<%= post._id %>" />
+	<div class="panel-heading">
+		<h3 class="panel-title"><input name="post[title]" value="<%= post.title %>" /></h3>
+	</div>
+	<div class="panel-body">
+		<textarea name="post[content]"><%= post.content %></textarea>
+	</div>
+	<!-- For single content -->
+	<div class="panel-footer">
+		<ul class="nav nav-tabs" role="tablist">
+			<li class="active"><a href="#comments" rol="tab" data-toggle="tab">Comments</a></li>
+			<li><a href="#media" rol="tab" data-toggle="tab">Media</a></li>
+			<li><a href="#info" rol="tab" data-toggle="tab">Info</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active" id="comments">
+				<% post.comments.forEach(function(comment) { %>
+					<% include ../../bytes/post-comments %>
+				<% }) %>
+			</div>
+			<div class="tab-pane" id="media">
+				<div class="row">
+					<div class="col-xs-4 col-md-2">
+						<a href="#" class="thumbnail">
+							<img src="#" style="width:80px;height:80px;">
+						</a>
+					</div>
+					<div class="col-xs-4 col-md-2">
+						<a href="#" class="thumbnail">
+							<img src="#" style="width:80px;height:80px;">
+						</a>
+					</div>
+					<div class="col-xs-4 col-md-2">
+						<a href="#" class="thumbnail">
+							<img src="#" style="width:80px;height:80px;">
+						</a>
+					</div>
+					<div class="col-xs-4 col-md-2">
+						<a href="#" class="thumbnail">
+							<img src="#" style="width:80px;height:80px;">
+						</a>
+					</div>
+					<div class="col-xs-4 col-md-2">
+						<a href="#" class="thumbnail">
+							<img src="#" style="width:80px;height:80px;">
+						</a>
+					</div>
+					<div class="col-xs-4 col-md-2">
+						<a href="#" class="thumbnail">
+							<img src="#" style="width:80px;height:80px;">
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane" id="info">
+				<textarea name="post[info]"><%= post.info %></textarea>
+			</div>
+		</div>
+	</div>
+	</form>
+</div>

@@ -7,5 +7,8 @@
 // information.
 module.exports = function routes() {
   this.match('about','pages#about');
+  this.match('admin/*', 'admin#post', {
+        via: ['get', 'post']
+    })
   this.match('*','pages#main');
 }
